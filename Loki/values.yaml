@@ -1,0 +1,88 @@
+deploymentMode: SingleBinary 
+loki: 
+  commonConfig: 
+    replication_factor: 1 
+  auth_enabled: false   
+  storage: 
+    type: filesystem 
+    filesystem: 
+      chunks_directory: /var/loki/chunks 
+      rules_directory: /var/loki/rules 
+      admin_api_directory: /var/loki/admin 
+  readinessProbe: 
+    httpGet: 
+      path: /ready 
+      port: http-metrics 
+    initialDelaySeconds: 120 
+    timeoutSeconds: 10 
+  image: 
+    registry: docker.io 
+    repository: grafana/loki 
+    pullPolicy: IfNotPresent 
+  podSecurityContext: 
+    fsGroup: 10001 
+    runAsGroup: 10001 
+    runAsNonRoot: true 
+    runAsUser: 10001 
+  containerSecurityContext: 
+    readOnlyRootFilesystem: true 
+    capabilities: 
+      drop: 
+        - ALL 
+    allowPrivilegeEscalation: false 
+ 
+  schemaConfig: 
+    configs: 
+    - from: "2024-01-01" 
+      store: tsdb 
+      index: 
+        prefix: loki_index_ 
+        period: 24h 
+      object_store: filesystem # we're storing on filesystem so there's no real persistence here. 
+      schema: v13 
+singleBinary: 
+  replicas: 1  
+read: 
+  replicas: 0 
+backend: 
+  replicas: 0 
+write: 
+  replicas: 0
+# Configuration for the gateway
+gateway:
+  service:
+    type: NodePort
+    nodePort: 31912
+  podSecurityContext:
+    fsGroup: 10001
+    runAsGroup: 10001
+    runAsNonRoot: true
+    runAsUser: 10001
+#  ingress:
+#    enabled: true
+#    ingressClassName: "loki-ingress"
+#    hosts:
+#      - host: gateway.loki.example.com
+#        paths:
+#          - path: /
+memcached:
+  chunk_cache:
+    enabled: true
+    host: "memcached-host" 
+    service: "memcached-client" 
+    batch_size: 128 
+    parallelism: 5 
+  resources: 
+    limits:
+      memory: 2000Mi
+    requests:
+      memory: 2000Mi
+results_cache:
+  enabled: true
+  host: "memcached-host"
+  service: "memcached-client"
+  timeout: "500ms"
+  default_validity: "12h" 
+chunksCache:
+  # -- Amount of memory allocated to chunks-cache for object storage (in MB).
+  allocatedMemory: 2048
