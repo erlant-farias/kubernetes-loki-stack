@@ -7,10 +7,15 @@ helm repo update
 helm install -n monitoring grafana grafana/grafana --version 8.0.2 --debug --timeout 10m0s
 ```
 
+Comando para recuperar a senha padrão de admin
+```
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
 Após o configurar o loki, adicione o Dashboard.
 Dashboard: 16966 Container Log Dashboard
            
-
+<img src="kubernetes.png"></img>
 
 ## Loki:
 Criar o arquivo values.yaml
