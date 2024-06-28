@@ -40,7 +40,7 @@ Para aplicar o daemonset do Promtail, não esqueça de alterar o arquivo "Daemon
 
 ```
   clients:
-    - url: http://172.18.32.228:31912/loki/api/v1/push
+    - url: http://{endereço-loki-gateway:porta}/loki/api/v1/push
 ```
 
 Para o endpoint do seu servidor do loki.

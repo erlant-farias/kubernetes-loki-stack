@@ -19,7 +19,7 @@ spec:
         args:
         - -config.file=/etc/promtail/promtail.yaml
         env: 
-        - name: 'HOSTNAME' # needed when using kubernetes_sd_configs
+        - name: 'HOSTNAME' 
           valueFrom:
             fieldRef:
               fieldPath: 'spec.nodeName'
@@ -53,7 +53,7 @@ data:
       grpc_listen_port: 0
 
     clients:
-    - url: http://172.18.32.228:30992/loki/api/v1/push
+    - url: http://{endereço-loki-gateway:porta}/loki/api/v1/push
 
     positions:
       filename: /tmp/positions.yaml

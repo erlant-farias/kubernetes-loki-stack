@@ -54,10 +54,10 @@ gateway:
     type: NodePort
     nodePort: 31912
   podSecurityContext:
-    fsGroup: 10001
-    runAsGroup: 10001
+    fsGroup: 101
+    runAsGroup: 101
     runAsNonRoot: true
-    runAsUser: 10001
+    runAsUser: 101
 #  ingress:
 #    enabled: true
 #    ingressClassName: "loki-ingress"
