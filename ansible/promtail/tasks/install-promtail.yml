@@ -1,0 +1,8 @@
+- name: Deploy version 6.16.2 of promtail chart inside monitoring namespace
+  kubernetes.core.helm:
+    name: promtail
+    chart_ref: grafana/promtail
+    release_namespace: monitoring
+    chart_version: 6.16.2 
+    values_files:
+      - /ubuntu/loki-stack/promtail/values.yaml

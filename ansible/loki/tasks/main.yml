@@ -1,0 +1,8 @@
+---
+# tasks file for loki
+- name: Copiando o Values
+  include_tasks:
+    file: copy-values.yml
+- name: Instalando Loki
+  include_tasks:
+    file: install-loki.yml

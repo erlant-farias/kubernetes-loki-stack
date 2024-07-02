@@ -1,0 +1,4 @@
+- name: Add helm repo
+  kubernetes.core.helm_repository:
+      name: grafana
+      repo_url: "https://grafana.github.io/helm-charts"

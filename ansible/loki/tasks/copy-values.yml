@@ -1,0 +1,4 @@
+- name: Envio do arquivo values
+  copy:
+    src: values.yaml
+    dest: /ubuntu/loki-stack/loki/values.yaml

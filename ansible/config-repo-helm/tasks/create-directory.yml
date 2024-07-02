@@ -1,0 +1,33 @@
+- name: Criar diretório /loki-stack/
+  file:
+    path: /ubuntu/loki-stack/
+    state: directory
+    owner: ubuntu   
+    group: ubuntu  
+    mode: "0755"  
+    recurse: yes
+- name: Criar diretório /loki-stack/loki/
+  file:
+    path: /ubuntu/loki-stack/loki/
+    state: directory
+    owner: ubuntu   
+    group: ubuntu  
+    mode: "0755"  
+    recurse: yes
+- name: Criar diretório /loki-stack/promtail/
+  file:
+    path: /ubuntu/loki-stack/promtail/
+    state: directory
+    owner: ubuntu   
+    group: ubuntu  
+    mode: "0755"  
+    recurse: yes
+
+- name: Criar diretório /loki-stack/grafana/
+  file:
+    path: /ubuntu/loki-stack/grafana/
+    state: directory
+    owner: ubuntu   
+    group: ubuntu  
+    mode: "0755"  
+    recurse: yes

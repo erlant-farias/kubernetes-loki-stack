@@ -1,0 +1,4 @@
+- name: Envio do arquivo values
+  copy:
+    src: values.yaml
+    dest: /home/ubuntu/loki-stack/grafana/

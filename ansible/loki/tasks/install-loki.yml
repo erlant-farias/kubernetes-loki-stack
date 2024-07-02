@@ -1,0 +1,8 @@
+- name: Deploy version 6.6.3 of Loki chart inside monitoring namespace
+  kubernetes.core.helm:
+    name: loki
+    chart_ref: grafana/loki
+    release_namespace: monitoring
+    chart_version: 6.6.3   
+    values_files:
+      - /ubuntu/loki-stack/loki/values.yaml

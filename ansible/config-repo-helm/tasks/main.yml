@@ -1,0 +1,11 @@
+---
+# tasks file for config-repo-helm
+- name: Adicionando o repositorio do Grafana
+  include_tasks:
+    file: add-grafana-repo.yml
+- name: Criando Diretorio paras os arquivos Values
+  include_tasks:
+    file: create-directory.yml
+- name: Criando Namespace
+  include_tasks:
+    file: ns-monitoring.yml

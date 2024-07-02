@@ -1,0 +1,8 @@
+- name: Deploy version 8.0.2 of Grafana chart inside monitoring namespace
+  kubernetes.core.helm:
+    name: grafana
+    chart_ref: grafana/grafana
+    release_namespace: monitoring
+    chart_version: 8.0.2
+    values_files:
+      - /ubuntu/loki-stack/grafana/values.yaml

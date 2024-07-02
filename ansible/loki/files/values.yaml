@@ -4,16 +4,16 @@ loki:
     replication_factor: 1 
   auth_enabled: false   
   storage: 
-    type: 'filesystem'
+    type: filesystem 
     filesystem: 
       chunks_directory: /var/loki/chunks 
       rules_directory: /var/loki/rules 
-      admin_api_directory: /var/loki/admin
+      admin_api_directory: /var/loki/admin 
   readinessProbe: 
     httpGet: 
       path: /ready 
       port: http-metrics 
-    initialDelaySeconds: 120
+    initialDelaySeconds: 120 
     timeoutSeconds: 10 
   image: 
     registry: docker.io 
@@ -42,21 +42,12 @@ loki:
       schema: v13 
 singleBinary: 
   replicas: 1  
-  persistence:
-    # -- Enable StatefulSetAutoDeletePVC feature
-    enableStatefulSetAutoDeletePVC: true
-    # -- Enable persistent disk
-    enabled: true
-    # -- Size of persistent disk
-    size: 10Gi
 read: 
   replicas: 0 
 backend: 
   replicas: 0 
 write: 
   replicas: 0
-
-
 # Configuration for the gateway
 gateway:
   service:

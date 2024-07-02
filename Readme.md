@@ -1,10 +1,15 @@
+## Create Namespace monitoring
+```bash
+kubectl create ns monitoring
+```
 ## Grafana:
 Com o Helm instalado utilize os seguintes comandos:
+Copie o arquivo values.yaml para o diretorio que irá realizar o comando.
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
-helm install -n monitoring grafana grafana/grafana --version 8.0.2 --debug --timeout 10m0s
+helm install -n monitoring --values values.yaml grafana grafana/grafana --version 8.0.2 --debug --timeout 10m0s
 ```
 
 Comando para recuperar a senha padrão de admin
@@ -18,6 +23,7 @@ Dashboard: 16966 Container Log Dashboard
 <img src="kubernetes.png"></img>
 
 ## Loki:
+
 Criar o arquivo values.yaml
 o arquivo default é criado com o seguinte comando: 
 ```bash
@@ -36,14 +42,15 @@ Lembre-se de alterar os valores do values.yaml de acordo com o ambiente, no caso
 
 ## Promtail:
 
-Para aplicar o daemonset do Promtail, não esqueça de alterar o arquivo "Daemonset.yaml" no seguinte campo:
+Nos arquivos Edite o campo:
 
 ```
   clients:
-    - url: http://{endereço-loki-gateway:porta}/loki/api/v1/push
+    - url: http://{{loki:port}}/loki/api/v1/push
 ```
 
 Para o endpoint do seu servidor do loki.
 
+```bash
 helm install -n monitoring --values values.yaml promtail grafana/promtail --version 6.16.2 --debug --timeout 10m0s
-
+```

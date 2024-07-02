@@ -1,0 +1,22 @@
+---
+# tasks file for loki-stack
+- hosts: kube-cp
+  become: yes
+  user: ubuntu
+  roles: 
+  - { role: config-repo-helm, tags: ["config_repo_helm_role"] }
+- hosts: kube-cp
+  become: yes
+  user: ubuntu
+  roles: 
+  - { role: grafana, tags: ["grafana_role"] }  
+- hosts: kube-cp
+  become: yes
+  user: ubuntu
+  roles: 
+  - { role: loki, tags: ["loki_role"] }  
+- hosts: kube-cp
+  become: yes
+  user: ubuntu
+  roles: 
+  - { role: promtail, tags: ["promtail_role"] }  

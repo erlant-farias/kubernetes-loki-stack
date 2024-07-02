@@ -1,0 +1,8 @@
+---
+# handlers file for grafana
+- name: Copiando arquivo Values
+  include_tasks:
+    file: copy-values.yml
+- name: Instalando o Grafana
+  include_tasks:
+    file: install-grafana.yml

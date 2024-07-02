@@ -1,0 +1,11 @@
+---
+# tasks file for promtail
+- name: Copiando o Values
+  include_tasks:
+    file: copy-values.yml
+- name: Copiando o Deamonset
+  include_tasks:
+    file: copy-daemon.yml
+- name: Instalando Promtail
+  include_tasks:
+    file: install-promtail.yml

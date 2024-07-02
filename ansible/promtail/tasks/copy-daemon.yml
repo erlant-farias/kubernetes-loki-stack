@@ -1,0 +1,4 @@
+- name: Envio do arquivo values
+  copy:
+    src: Daemonset.yaml
+    dest: /ubuntu/loki-stack/promtail/Daemonset.yaml
